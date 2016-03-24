@@ -3,7 +3,8 @@ from web.models import Category, Page
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'views', 'likes')
+    prepopulated_fields = {'slug':('name',)}
+    list_display = ('name', 'views', 'likes', 'slug')
 
 class PageAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'url')
