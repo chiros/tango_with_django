@@ -2,4 +2,8 @@ from django.shortcuts import render, HttpResponse
 
 # Create your views here.
 def index(request):
-    return HttpResponse("web's index page.")
+    context_dict = {'boldmessage': "I am bold font from the context"}
+    return render(request, 'web/index.html', context_dict)
+
+def about(request):
+    return render(request, 'web/about.html')
