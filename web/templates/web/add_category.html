@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Add New Category{% endblock %}
+
+{% block content %}
+    <h1>Add a Category</h1>
+        <form id="category_form" method="post" action="/web/add_category/">
+            <div>
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}</div>
+            <div>
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}</div>
+
+            <div><input type="submit" name="submit" value="Create Category" /></div>
+        </form>
+{% endblock %}
