@@ -1,5 +1,5 @@
 from django.contrib import admin
-from web.models import Category, Page
+from web.models import Category, Page, UserProfile
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -11,3 +11,4 @@ class PageAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Page, PageAdmin)
+admin.site.register(UserProfile)
