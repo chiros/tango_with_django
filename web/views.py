@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Category, Page
 from .forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
@@ -23,7 +23,7 @@ def category(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
         context_dict['category_name'] = category.name
-        pages = Page.objects.filter(category=category)
+        pages = Page.objects.filter(category=category).order_by('-views')
         context_dict['category_name_slug'] = category_name_slug
         context_dict['pages'] = pages
         context_dict['category'] = category
@@ -193,3 +193,19 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/web/')
+
+
+def track_url(request):
+    page_id = None
+    url = '/web/'
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+            try:
+                page = Page.objects.get(id=page_id)
+                page.views += 1
+                page.save()
+                url = page.url
+            except:
+                pass
+    return redirect(url)
