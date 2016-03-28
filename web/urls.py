@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^category/(?P<category_name_slug>[\w\-]+)/add_page/$', views.add_page, name='add_page'),
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^got/', views.track_url, name='goto'),
+    url(r'^like_category/$', views.like_category, name='like_category'),
 ]
