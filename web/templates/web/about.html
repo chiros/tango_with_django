@@ -2,8 +2,14 @@
 
 {% load staticfiles %}
 
-{% block title %}Index Page{% endblock %}
+{% block title %}About{% endblock %}
 
 {% block body_block %}
-    <strong>About Page.</strong>
+    <div class="page-header">
+        <h1>About</h1>
+    </div>
+    <div>
+        <p></strong>.</p>
+        <img src="{% static "images/chrome.png" %}" alt="Picture of Rango" />
+    </div>
 {% endblock %}
