@@ -1,29 +1,17 @@
 {% extends 'base.html' %}
+
 {% load staticfiles %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Index Page{% endblock %}
 
-{% block content %}
-    {% if user.is_authenticated %}
-        <h1>Rango says... hello {{ user.username }}!</h1>
-    {% else %}
-        <h1>Rango says... hello world!</h1>
-    {% endif %}
-
+{% block body_block %}
     {% if categories %}
         <ul>
-            {% for category in categories %}
-                <!-- Following line changed to add an HTML hyperlink -->
-                <li><a href="/web/category/{{ category.slug }}">{{ category.name }}</a></li>
-            {% endfor %}
+        {% for category in categories %}
+            <li><a href="/web/category/{{ category.slug }}">{{ category.name }}</a></li>
+        {% endfor %}
         </ul>
     {% else %}
-        <h1><strong>There are no categories present.</strong></h1>
+        <strong>There are no categories present.</strong>
     {% endif %}
-    <br><a href="/web/add_category">Add a New Category</a>
-    <br>
-    <a href="/web/register/">Register Here</a>
-    <br>
-    <a href="/web/login/">Login</a>
 {% endblock %}
-
